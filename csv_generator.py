@@ -2,6 +2,7 @@
 import os
 import sys
 import pandas as pd
+import time
 
 def main():
     # 1. Pedir al usuario la ruta del Excel
@@ -40,6 +41,7 @@ def main():
         df_reg.to_csv(salida, mode='w', header=True,  index=False, encoding='utf-8')
 
     print(f"✅ Datos procesados y agregados en '{salida}'")
-
+    print("Ël programa se cerrará en 10 segundos...")
+    time.sleep(10)  # Esperar 5 segundos antes de cerrar
 if __name__ == "__main__":
     main()
