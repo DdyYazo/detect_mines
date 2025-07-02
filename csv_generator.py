@@ -13,27 +13,28 @@ def main():
 
     # 2. Cargar el Excel
     df_pos = pd.read_excel(excel_path, engine='openpyxl')
-    required = {'partida','fila','columna'}
+    required = {'partida', 'fila', 'columna'}
     if not required.issubset(df_pos.columns):
         print(f"❌ El archivo debe tener columnas: {required}")
         sys.exit(1)
 
-    # 3. Construir lista de registros
+    # 3. Construir lista de registros (iterando columnas primero)
     registros = []
     for partida, grupo in df_pos.groupby('partida'):
-        bombas = set(zip(grupo['fila'], grupo['columna']))
-        for fila in range(1, 6):
-            for col in range(1, 6):
+        bombas = set(zip(grupo['columna'], grupo['fila']))
+        for col in range(1, 6):
+            for fila in range(1, 6):
                 registros.append({
                     'partida': partida,
-                    'fila':    fila,
                     'columna': col,
-                    'mina':    1 if (fila, col) in bombas else 0
+                    'fila':    fila,
+                    'mina':    1 if (col, fila) in bombas else 0
                 })
 
-    df_reg = pd.DataFrame(registros)
+    # 4. Crear DataFrame con el orden de columnas deseado
+    df_reg = pd.DataFrame(registros, columns=['partida', 'columna', 'fila', 'mina'])
 
-    # 4. Añadir al CSV o crearlo si no existe
+    # 5. Añadir al CSV existente o crearlo si no existe
     salida = 'minas.csv'
     if os.path.exists(salida):
         df_reg.to_csv(salida, mode='a', header=False, index=False, encoding='utf-8')
@@ -41,7 +42,8 @@ def main():
         df_reg.to_csv(salida, mode='w', header=True,  index=False, encoding='utf-8')
 
     print(f"✅ Datos procesados y agregados en '{salida}'")
-    print("Ël programa se cerrará en 10 segundos...")
-    time.sleep(10)  # Esperar 5 segundos antes de cerrar
+    print("El programa se cerrará en 10 segundos...")
+    time.sleep(10)
+
 if __name__ == "__main__":
     main()
