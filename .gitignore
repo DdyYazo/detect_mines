@@ -252,4 +252,4 @@ $RECYCLE.BIN/
 ./env
 ./dist
 ./build
-./csv_generator.exe
+*.exe
