@@ -1,0 +1,1 @@
+**Ruta**: C:\Users\usar2\OneDrive - uniminuto.edu\Documentos\GitHub\detect_mines\partidas_mines.xlsx
