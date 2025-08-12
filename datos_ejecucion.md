@@ -1,1 +1,1 @@
-**Ruta**: C:\Users\usar2\OneDrive - uniminuto.edu\Documentos\GitHub\detect_mines\partidas_mines.xlsx
+**Ruta**: C:\Users\usuario\Documents\GitHub\detect_mines\partidas_mines.xlsx
