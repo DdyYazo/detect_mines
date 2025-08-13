@@ -112,6 +112,9 @@ def main():
 
     # 4. Crear DataFrame con el orden de columnas deseado
     df_reg = pd.DataFrame(registros, columns=['partida', 'columna', 'fila', 'mina'])
+    
+    # 4.0 Convertir partida a entero para evitar decimales en el CSV
+    df_reg['partida'] = df_reg['partida'].astype(int)
 
     # 4.1 Verificar/crear carpeta 'games'
     games_dir = "games"
